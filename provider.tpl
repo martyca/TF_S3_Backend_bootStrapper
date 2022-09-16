@@ -1,8 +1,9 @@
 terraform {
   backend "s3" {
-    bucket = "${bucketname}"
-    key    = "${bucketkey}"
-    region = "${region}"
+    bucket          = "${bucketname}"
+    key             = "${bucketkey}"
+    region          = "${region}"
+    dynamodb_table  = "${lockdb}"
   }
   required_providers {
     aws = {

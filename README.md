@@ -5,13 +5,18 @@ Terraform boilerplate code, to initialise an S3 backend in AWS and move local st
 - An AWS account.
 - Credentials to access said AWS account.
 
+## Components
+This will create the following resources:
+- aws_s3_bucket
+- aws_dynamodb_table
+
 ## Setup
 Clone this repository, cd into it, run the following commands:
 
 - `terraform init`
 - `terraform apply`
 
-That's it, you now have a terraform workspace with a backend in S3.
+That's it, you now have a terraform workspace with a backend in S3 and lock state in DynamoDB.
 
 ## Backend Properties
 To get the name of the S3 bucket and the object that holds your state file, query the terraform outputs.
@@ -23,7 +28,8 @@ Should yield:
 ```
 {
   "bucket" = "terraform-state-00000000000000000000000001"
-  "key" = "terraform.tfstate"
+  "db"     = "StateLockDB"
+  "key"    = "terraform.tfstate"
 }
 ```
 
